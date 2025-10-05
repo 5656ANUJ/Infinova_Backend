@@ -1,0 +1,29 @@
+const mongoose=require('mongoose');
+const productSchema=mongoose.Schema({
+    name:{
+        type:String,
+        reqquired:true
+    },
+    details:{
+        type:String,
+        reqquired:true
+    },
+    cost:{
+        type:Number,
+        reqquired:true
+    },
+    brochureUrl:{
+        type:String,
+        reqquired:true
+    },
+    brochurePublicId:{
+        type:String,
+        reqquired:true
+    },
+    category:{
+        type:mongoose.Schema.Types.ObjectId,
+        ref:'ProductCategory',
+        required:true
+    }
+},{timestamps:true});
+module.exports=mongoose.model('Product',productSchema);

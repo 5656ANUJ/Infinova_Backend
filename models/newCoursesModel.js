@@ -1,0 +1,43 @@
+const mongoose=require('mongoose');
+const newCoursesSchema=new mongoose.Schema({
+    name:{
+            type:String,
+            required:true,
+        },
+        details:{
+            type:String,
+            required:true
+        },
+        duration:{
+            type:String,
+        },
+        brochureUrl:{
+            type:String
+        },
+        brochurePublicId:{
+            type:String
+        },
+        courseImageUrl:{
+            type:String,
+            required:true
+        },
+        courseImagePublicId:{
+            type:String,
+            required:true
+        },
+        category:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:'CourseCategory',
+           
+        },
+        trainer:{
+            type:mongoose.Schema.Types.ObjectId,
+            ref:"Trainer",
+            required:true   
+        },
+        isPublished:{
+            type:Boolean,
+            default:false
+        }
+    },{timestamps:true})
+module.exports=mongoose.model("new_course",newCoursesSchema);
