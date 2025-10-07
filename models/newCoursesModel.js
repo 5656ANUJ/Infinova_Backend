@@ -33,7 +33,7 @@ const newCoursesSchema=new mongoose.Schema({
         trainer:{
             type:mongoose.Schema.Types.ObjectId,
             ref:"Trainer",
-            required:true   
+            // required:true   
         },
         isPublished:{
             type:Boolean,
