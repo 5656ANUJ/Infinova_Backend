@@ -19,15 +19,20 @@ const getOtp=async(req,res)=>{
         }
        
        const transporter = nodemailer.createTransport({
-        service: 'Gmail',
-        auth: {
-            user: process.env.EMAIL, 
-            pass: process.env.APP_PASSWORD, 
-        },
+            host: 'smtp.gmail.com',
+            port: 587,
+            secure: false, // true for 465, false for other ports
+            auth: {
+                user: process.env.EMAIL, 
+                pass: process.env.APP_PASSWORD, 
+            },
+            tls: {
+                rejectUnauthorized: false // Add this if still having issues
+            }
         });
 
      transporter.sendMail({
-    from: process.env.EMAIL,  // must match Gmail account
+    from: process.env.EMAIL, 
     to: email,
     subject: "Your OTP",
     text: `Hi ${name}, your OTP code is ${otp}. It will expire in 5 minutes.`
