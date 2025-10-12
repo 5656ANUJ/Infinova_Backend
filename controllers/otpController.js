@@ -27,12 +27,12 @@ const getOtp=async(req,res)=>{
         });
 
      transporter.sendMail({
-        from:`${process.env.AUTH_USER}`,
-        to:`${email}`,
-        subject:"Your Otp",
-        text:`Hi ${name}, your OTP code is ${otp}. It will expire in 5 minutes.`
+    from: process.env.EMAIL,  // must match Gmail account
+    to: email,
+    subject: "Your OTP",
+    text: `Hi ${name}, your OTP code is ${otp}. It will expire in 5 minutes.`
+    });
 
-     })
         res.json({success:true,message:"Otp sent successfully!!"})
     } catch (error) {
         res.status(500).json( {message: "Internal Server Error", error: error.message})
